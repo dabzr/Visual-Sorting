@@ -23,9 +23,8 @@ void Graphics::appUI(int * array){
 int Graphics::UserInput(int *atual){
   if(IsKeyDown(KEY_RIGHT)){
     usleep(120000);
-    if (*atual < 3) *atual+=1;
+    if (*atual < 2) *atual+=1;
     else *atual = 0;
-    printf("%d\n", *atual);
   }  
   char algo[3][20] = {"Selection Sort", "Bubble Sort", "Insertion Sort"};
   BeginDrawing();
