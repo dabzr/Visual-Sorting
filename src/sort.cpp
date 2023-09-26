@@ -4,7 +4,7 @@ void selectionSort(int * array, size_t size){
   Graphics app;
 	for (int i = 0; i < size; i++){
     for (int j = (i+1); j < size; j++){
-      if (array[i] < array[j]){
+      if (array[i] > array[j]){
         array[i]= array[i] ^ array[j];
         array[j] = array[i] ^ array[j];
         array[i] = array[i] ^ array[j];

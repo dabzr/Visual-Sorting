@@ -6,7 +6,6 @@
 
 void createRandomArray(int * array, size_t size){
   for (int i = 0; i<size; i++){
-    SetRandomSeed(array[i]*time(nullptr));
     array[i] = GetRandomValue(1, 500);
   }
 }
@@ -14,7 +13,7 @@ void createRandomArray(int * array, size_t size){
 void Graphics::appUI(int * array){
   ClearBackground(BLACK);
   BeginDrawing();
-  usleep(5000);
+  usleep(4000);
   for (int i = 0; i < SIZE; i ++){
     DrawRectangle((30 + i * 10), 500 + (250 - array[i]), 10, array[i], RAYWHITE);
   }
@@ -25,7 +24,12 @@ int Graphics::UserInput(int *atual){
     usleep(120000);
     if (*atual < 2) *atual+=1;
     else *atual = 0;
-  }  
+  }
+  if(IsKeyDown(KEY_LEFT)){
+    usleep(120000);
+    if(*atual > 0) *atual-=1;
+    else *atual = 2;
+  }
   char algo[3][20] = {"Selection Sort", "Bubble Sort", "Insertion Sort"};
   BeginDrawing();
   ClearBackground(BLACK);
@@ -42,6 +46,7 @@ int Graphics::UserInput(int *atual){
 }  
 
 void WindowLoop::windowLoop(){
+  SetRandomSeed(time(nullptr));
   int array[SIZE];
   createRandomArray(array, SIZE);
   int input = 0, atual = 0;
