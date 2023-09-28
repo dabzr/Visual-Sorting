@@ -1,5 +1,7 @@
 #include <iostream>
 
+void startGame();
+
 void selectionSort(int * array, size_t size);
 
 void bubbleSort(int *array, size_t size);
