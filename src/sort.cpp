@@ -2,9 +2,9 @@
 
 void selectionSort(int * array, size_t size){
   Graphics app;
-	for (int i = 0; i < size; i++){
-    for (int j = (i+1); j < size; j++){
-      if (array[i] > array[j]){
+  for (int i = 0; i < size; i++) {
+    for (int j = (i+1); j < size; j++) {
+      if (array[i] > array[j]) {
         array[i]= array[i] ^ array[j];
         array[j] = array[i] ^ array[j];
         array[i] = array[i] ^ array[j];
@@ -17,17 +17,17 @@ void selectionSort(int * array, size_t size){
 
 void bubbleSort(int *array, size_t size){
   Graphics app;
-	while(size){
-		size--;
-		for(int i = 0; i < size; i++){
-			if(array[i] > array[i+1]){
-				array[i] = array[i] ^ array[i+1];
-				array[i+1] = array[i] ^ array[i+1];
-				array[i] = array[i] ^ array[i+1];
+  while(size) {
+    size--;
+    for(int i = 0; i < size; i++) {
+      if (array[i] > array[i+1]) {
+        array[i] = array[i] ^ array[i+1];
+        array[i+1] = array[i] ^ array[i+1];
+        array[i] = array[i] ^ array[i+1];
         app.appUI(array);
-			}
-		}
-	}
+      }
+    }
+  }
 }
 
 
