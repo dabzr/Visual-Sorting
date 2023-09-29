@@ -1,4 +1,5 @@
 #include <iostream>
+#define SIZE 90
 
 void startGame();
 
@@ -11,13 +12,17 @@ void insertionSort(int * array, int size);
 void createRandomArray(int * array, size_t size);
 
 class Graphics{
-public: 
+public:
+  char algoTitle[3][20] = {"Selection Sort", "Bubble Sort", "Insertion Sort"};
+  int atual = 0;
   void appUI(int * array); 
-  int UserInput(int * atual);  
+  int userInput();
 };
 
-class WindowLoop : public Graphics{
+class WindowManagment : public Graphics{
 public:
+  int array[SIZE];
+  int input = 0;
   void windowLoop();
 };
 
