@@ -1,5 +1,4 @@
 #include <raylib.h>
-#include <unistd.h>
 #include "../include/sort.hpp"
 
 void createRandomArray(std::vector<int>& array, const size_t size) {
