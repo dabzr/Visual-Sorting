@@ -3,30 +3,24 @@
 #include <array>
 #include "../include/sort.hpp"
 
-void createRandomArray(int * array, size_t size) {
+void createRandomArray(std::vector<int>& array, const size_t size) {
+  array.resize(size);
   for (int i = 0; i<size; i++)
     array[i] = GetRandomValue(1, 500);
 }
  
-void Graphics::appUI(int * array){
+void Graphics::appUI(std::vector<int>& array, const size_t size){
   ClearBackground(BLACK);
   BeginDrawing();
-  usleep(4000);
-  for (int i = 0; i < SIZE; i ++)
+  for (int i = 0; i < size; i ++)
     DrawRectangle((30 + i * 10), 500 + (250 - array[i]), 10, array[i], RAYWHITE);
   EndDrawing();
 } 
 
 int Graphics::userInput() {
-  if (IsKeyDown(KEY_RIGHT)) {
-    usleep(150000);
-    atual<2?atual++:atual=0;
-  }
-  if (IsKeyDown(KEY_LEFT)) {
-    usleep(150000);
-    atual>0?atual--:atual=2;
-  }
-  if (IsKeyDown(KEY_ENTER)) return atual;
+  if (IsKeyPressed(KEY_RIGHT)) atual<2?atual++:atual=0;
+  if (IsKeyPressed(KEY_LEFT)) atual>0?atual--:atual=2;
+  if (IsKeyPressed(KEY_ENTER)) return atual;
 
   BeginDrawing();
   ClearBackground(BLACK);
@@ -40,20 +34,24 @@ void WindowManagment::windowLoop() {
   SetRandomSeed(time(nullptr));
   createRandomArray(array, SIZE);
   InitWindow(1000, 1000, "Sorting");
+  SetTargetFPS(250);
   while(!WindowShouldClose()) {
-    if (IsKeyDown(KEY_ESCAPE)) WindowShouldClose();
+    if (IsKeyPressed(KEY_ESCAPE)) WindowShouldClose();
     if (!input) input = userInput() + 1;
     else {
-      appUI(array);
-      switch(input) {
+      appUI(array, SIZE);
+      switch (input) {
         case 1:
           selectionSort(array, SIZE);
+          break;
         case 2: 
           bubbleSort(array, SIZE);
+          break;
         case 3:
           insertionSort(array, SIZE);
+          break;
       }
-      if (IsKeyDown(KEY_R)) {
+      if (IsKeyPressed(KEY_R)) {
         createRandomArray(array, SIZE);
         input = 0;
       }
