@@ -30,14 +30,14 @@ void bubbleSort(std::vector<int>& array, size_t size){
 
 void insertionSort(std::vector<int>& array, const size_t size) {
   Graphics app;
-  int j;
+  int j, key;
   for (int i = 1; i < size; i++) {
-    int key = array[i];
+    key = array[i];
     j = i - 1;
     while (key < array[j] && j >= 0) {
       array[j + 1] = array[j];
       app.appUI(array, size);
-      --j;
+      j--;
     }
     array[j + 1] = key;
   }
