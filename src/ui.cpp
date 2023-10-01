@@ -16,14 +16,14 @@ void Graphics::appUI(std::vector<int>& array, const size_t size){
 } 
 
 int Graphics::userInput() {
-  if (IsKeyPressed(KEY_RIGHT)) atual<2?atual++:atual=0;
-  if (IsKeyPressed(KEY_LEFT)) atual>0?atual--:atual=2;
-  if (IsKeyPressed(KEY_ENTER)) return atual;
+  if (IsKeyPressed(KEY_RIGHT)) currentSelected<2?currentSelected++:currentSelected=0;
+  if (IsKeyPressed(KEY_LEFT)) currentSelected>0?currentSelected--:currentSelected=2;
+  if (IsKeyPressed(KEY_ENTER)) return currentSelected;
 
   BeginDrawing();
   ClearBackground(BLACK);
   for (int i = 0; i < 3; i++) 
-    atual==i?DrawText(algoTitle[i], 100 + 300 * i, 500, 30, RAYWHITE):DrawText(algoTitle[i], 100 + 300 * i, 500, 30, GRAY);
+    currentSelected==i?DrawText(algoTitle[i], 100 + 300 * i, 500, 30, RAYWHITE):DrawText(algoTitle[i], 100 + 300 * i, 500, 30, GRAY);
   EndDrawing();
   return -1;
 }

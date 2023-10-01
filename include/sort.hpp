@@ -16,7 +16,7 @@ void createRandomArray(std::vector<int>& array, const size_t size);
 class Graphics{
 public:
   char algoTitle[3][20] = {"Selection Sort", "Bubble Sort", "Insertion Sort"};
-  int atual = 0;
+  int currentSelected = 0;
   void appUI(std::vector<int>& array, const size_t size); 
   int userInput();
 };
