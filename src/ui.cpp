@@ -3,8 +3,8 @@
 
 void createRandomArray(std::vector<int>& array, const size_t size) {
   array.resize(size);
-  for (int i = 0; i<size; i++)
-    array[i] = GetRandomValue(1, 500);
+  for (int i : array)
+    i = GetRandomValue(1, 500);
 }
  
 void Graphics::appUI(std::vector<int>& array, const size_t size){
