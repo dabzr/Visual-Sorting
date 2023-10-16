@@ -1,10 +1,10 @@
 #include <raylib.h>
 #include "../include/sort.hpp"
-
+#include <unistd.h>
 void createRandomArray(std::vector<int>& array, const size_t size) {
   array.resize(size);
-  for (int i : array)
-    i = GetRandomValue(1, 500);
+  for (int i = 0; i<size; i++)
+    array[i] = GetRandomValue(1, 500);
 }
  
 void Graphics::appUI(std::vector<int>& array, const size_t size){
@@ -33,22 +33,13 @@ void WindowManagment::windowLoop() {
   createRandomArray(array, SIZE);
   InitWindow(1000, 1000, "Sorting");
   SetTargetFPS(250);
+  void (*sort[])(std::vector <int>& array, size_t size) = {selectionSort, bubbleSort, insertionSort};
   while (!WindowShouldClose()) {
     if (IsKeyPressed(KEY_ESCAPE)) WindowShouldClose();
     if (!input) input = userInput() + 1;
     else {
       appUI(array, SIZE);
-      switch (input) {
-        case 1:
-          selectionSort(array, SIZE);
-          break;
-        case 2: 
-          bubbleSort(array, SIZE);
-          break;
-        case 3:
-          insertionSort(array, SIZE);
-          break;
-      }
+      (*sort[input-1])(array, SIZE);
       if (IsKeyPressed(KEY_R)) {
         createRandomArray(array, SIZE);
         input = 0;
